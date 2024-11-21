@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: gateway-service
+#  cloud:
+#    gateway:
+#      mvc:
+#        routes:
+#          - id: product-route
+#            uri: ${PRODUCT_SERVICE_URL:http://localhost:8092}
+#            predicates:
+#              - Path=/product-service/**
+#            filters:
+#              - RewritePath=/product-service/?(?<segment>.*), /$\{segment}
+#              - AddResponseHeader=X-Gateway,gateway-service
+#              - name: CircuitBreaker
+#                args:
+#                  name: productService
+#                  fallbackUri: forward:/product-fallback
+
+server:
+  port: 8093
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        sliding-window-size: 10
+        permitted-number-of-calls-in-half-open-state: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 5s
+        register-health-indicator: true
+  timelimiter:
+    instances:
+      productService:
+        timeout-duration: 2s
+
+logging:
+  level:
+    io:
+      github:
+        resilience4j:
+          circuitbreaker: DEBUG

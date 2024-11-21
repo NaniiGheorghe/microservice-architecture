@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: development
+  main:
+    web-application-type: reactive
+  application:
+    name: catalog-service
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      username: ${CONFIG_SERVICE_USERNAME}
+      password: ${CONFIG_SERVICE_PASS}
+server:
+  port: 8090

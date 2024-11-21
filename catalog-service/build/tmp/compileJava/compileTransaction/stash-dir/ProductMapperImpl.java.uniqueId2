@@ -1,0 +1,50 @@
+package com.study.microservices.catalog.mapper;
+
+import com.study.microservices.catalog.dto.ProductCsv;
+import com.study.microservices.catalog.dto.ProductResponse;
+import com.study.microservices.catalog.entity.Product;
+import javax.annotation.processing.Generated;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2024-11-21T11:19:33+0200",
+    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 23.0.1 (Oracle Corporation)"
+)
+public class ProductMapperImpl implements ProductMapper {
+
+    @Override
+    public ProductResponse toResponse(Product product) {
+        if ( product == null ) {
+            return null;
+        }
+
+        String id = null;
+        String sku = null;
+        String title = null;
+        String description = null;
+        String listPrice = null;
+        String salePrice = null;
+        String category = null;
+        String categoryTree = null;
+        String averageProductRating = null;
+        String productUrl = null;
+        String productImageUrls = null;
+        String brand = null;
+        String totalNumberReviews = null;
+
+        ProductResponse productResponse = new ProductResponse( id, sku, title, description, listPrice, salePrice, category, categoryTree, averageProductRating, productUrl, productImageUrls, brand, totalNumberReviews );
+
+        return productResponse;
+    }
+
+    @Override
+    public Product toProductEntity(ProductCsv productCsv) {
+        if ( productCsv == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        return product;
+    }
+}
